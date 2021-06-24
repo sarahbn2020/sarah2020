@@ -1,32 +1,44 @@
-# sarah2020
-#!/bin/bash
-function assign_initial_values() {	pos_row=10	pos_col=10	min_row=10	min_col=10	max_row=60	max_col=60	challenge_row=49        challenge_col=49	challenge_exist=0	score=0	speed="0.1"	random_row=0	random_col=0}
-function update_status_bar(){	tput sc
-	let label_status_bar_pos=$max_row+2
-	tput cup $label_status_bar_pos $min_col; echo $1	tput rc}
-function update_score_bar() {        tput sc
-	tput setf 6        let label_score_bar_pos=$min_row-2
-        tput cup $label_score_bar_pos $min_col; echo Your Score: $1	tput setf 7        tput rc}
-function game_window(){	tput smso	tput setf 3        while ((  pos_col <= max_col ))        do                tput cup $min_row $pos_col; echo "_"		tput cup $max_row $pos_col; echo "_"	                let pos_col++        done
-	while ((  pos_row <= max_row ))	do		tput cup $pos_row $min_col; echo "|"		tput cup $pos_row $max_col; echo "|"		let pos_row++	done
-	tput rmso	tput setf 7	let pos_row=$min_row	let pos_col=$min_col	update_score_bar $score	update_status_bar "Press an arrow key to start."	sleep 2	update_status_bar ".........go on.............."}
-function my_init() {	assign_initial_values	setterm -cursor off	#tput rmso	clear	tput cup $pos_row $pos_col; echo O}
-function my_quit() {	clear	setterm -cursor on	tput setf 7	exit}
-function check_coordinates() {	if (( $pos_row < $min_row+2 ))	then 		let pos_row=max_row-2		update_status_bar "Crashed to wall. Press ENTER to Quit"		read		my_quit	fi
-        if (( $pos_row > $max_row-2 ))        then 		let pos_row=min_row+2		update_status_bar "Crashed to wall. Press ENTER to Quit"		read		my_quit        fi        	if (( $pos_col < $min_col+2 ))        then 		let pos_col=max_col-2		update_status_bar "Crashed to wall. Press ENTER to Quit"		read		my_quit	fi        	if (( $pos_col > $max_col-2 ))        then 		let pos_col=min_col+2		update_status_bar "Crashed to wall. Press ENTER to Quit"		read		my_quit	fi}
-function create_random_row_and_col() {        local rnd_row        local rnd_col
-        let rnd_row=$max_row-$min_row-3        let rnd_col=$max_col-$min_col-3
-        random_row=$(( $RANDOM % rnd_row ))        random_col=$(( $RANDOM % rnd_col ))
-        let random_row=$random_row+$min_row        let random_col=$random_col+$min_col}
-function create_challenge() {	create_random_row_and_col		let challenge_row=$random_row 	let challenge_col=$random_col
-	tput sc	tput setf 4	tput cup $challenge_row $challenge_col; echo "@"		tput setf 7	tput rc	challenge_exist=1}
-function check_challenge_exist() {	if (( (( $1 == $challenge_row )) && (( $2 == $challenge_col )) ))	then		challenge_exist=0		let score++		update_score_bar $score		if (( score > 20 )); then			speed="0.005"		elif (( score > 15 )); then			speed="0.01"		elif (( score > 10 )); then			speed="0.05"		else			speed="0.1"		fi	fi}
-my_init
-game_window
-create_random_row_and_collet pos_row=$random_rowlet pos_col=$random_col
-while truedo	trapKey=	if IFS= read -d '' -rsn 1 -t $speed str; then		while IFS= read -d '' -rsn 1 -t $speed chr; do			str+="$chr"		done        	case $str in			$'\E[A') trapKey=UP; new_dir=UP  ;;			$'\E[B') trapKey=DOWN; new_dir=DOWN ;;			$'\E[C') trapKey=RIGHT; new_dir=RIGHT ;;			$'\E[D') trapKey=LEFT; new_dir=LEFT ;;			q | $'\E') my_quit ;; #loop=false; exit         	esac	fi
-	check_coordinates
-	prex=$pos_col	prey=$pos_row
-	case $new_dir in		UP) let pos_row-- ;;		DOWN) let pos_row++ ;;		RIGHT) let pos_col++ ;;		LEFT) let pos_col-- ;;	esac
-	tput cup $prey $prex; echo " "	check_challenge_exist $pos_row $pos_col 	if (( challenge_exist == 0 ))	then		create_challenge	fi        tput cup $pos_row $pos_col; echo "O"done
-my_quit
+## Hi there. I'm Lutfullah...👋
+- 🔭 I'm currently working on frontend and mobile app development (JavaScript | React | React Native)
+- 🌱 I'm currently learning backend development (Node.js | MongoDB | Django)
+- 💬 Ask me about anything that you want to learn 
+## 👨👩 Social
+[![Linkedin: VPA](https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/l%C3%BCtfullah-%C3%A7elenk-aa0927206/)
+[![website](https://img.shields.io/badge/stackoverflow-c8d6e5.svg?&style=for-the-badge&logo=stackoverflow&logoColor=orange)](https://stackoverflow.com/users/15324523/lutfullah-celenk)
+[![website](https://img.shields.io/badge/gmail-f1f2f6.svg?&style=for-the-badge&logo=gmail&logoColor=red)](mailto:lutfullahclnk1104@gmail.com)
+[![website](https://img.shields.io/badge/%20-medium-black?&style=for-the-badge&logoColor=white)](https://medium.com/@lutfullahcelenk)
+<p align="left"> <img src="https://komarev.com/ghpvc/?username=lutfullahcelenk" alt="lutfullahcelenk" /> </p>
+## 💻 Frontend
+<a href="#" target="_blank"> <img src="https://www.flaticon.com/svg/static/icons/svg/919/919827.svg" alt="html" height="60"/> </a>
+<a href="#" target="_blank"> <img src="https://www.flaticon.com/svg/static/icons/svg/919/919826.svg" alt="css" height="60"/> </a>
+<a href="#" target="_blank"> <img src="https://cdn.icon-icons.com/icons2/2108/PNG/512/javascript_icon_130900.png" alt="js" height="60"/> </a>
+<a href="#" target="_blank"> <img src="https://cdn.icon-icons.com/icons2/2415/PNG/512/react_original_wordmark_logo_icon_146375.png" alt="react" width="60"/> </a>
+<a href="#" target="_blank"> <img src="https://www.pngkit.com/png/detail/373-3738691_react-native-svg-transformer-allows-you-import-svg.png" alt="react-native" width="55"/> </a>
+<a href="#" target="_blank"> <img src="https://upload.wikimedia.org/wikipedia/commons/4/49/Redux.png" alt="redux" height="60"/> </a>
+<a href="#" target="_blank"> <img src="https://cdn.icon-icons.com/icons2/2415/PNG/512/bootstrap_plain_wordmark_logo_icon_146620.png" alt="bootstrap" height="60"/> </a>
+<a href="#" target="_blank"> <img src="https://material-ui.com/static/logo_raw.svg" alt="material-ui" height="55"/> </a>
+<a href="#" target="_blank"> <img src="https://react.semantic-ui.com/logo.png" alt="semantic-ui" height="60"/> </a>
+## 💻 Backend
+<a href="#" target="_blank"> <img src="https://www.python.org/static/img/python-logo.png" alt="python" width="150"/> </a>
+<a href="#" target="_blank"> <img src="https://www.djangoproject.com/m/img/logos/django-logo-negative.png" alt="django" height="50"/> </a>
+<a href="#" target="_blank"> <img src="https://cdn.icon-icons.com/icons2/2699/PNG/512/java_logo_icon_168609.png" alt="java" width="100"/> </a>
+<a href="#" target="_blank"> <img src="https://miro.medium.com/max/900/1*o5FmjKTPdJTbhGE2MIjo6w.jpeg" alt="spring-boot" width="90"/> </a>
+<a href="#" target="_blank"> <img src="https://cdn.icon-icons.com/icons2/2415/PNG/512/nodejs_original_logo_icon_146411.png" alt="node-js" height="50"/> </a>
+<a href="#" target="_blank"> <img src="https://cdn.buttercms.com/4XpulFfySpWyYTXuaVL2" alt="express" height="50" /> </a>
+## ⚙ Tools
+<a href="#" target="_blank"> <img src="https://www.flaticon.com/svg/static/icons/svg/919/919831.svg" alt="sass" height="50"/> </a> 
+<a href="#" target="_blank"> <img src="https://www.flaticon.com/svg/static/icons/svg/919/919832.svg" alt="ts" height="50"/> </a> 
+<a href="#" target="_blank"> <img src="https://img.icons8.com/color/452/visual-studio-2019.png" alt="visual-studio" height="50"/> </a> 
+<a href="#" target="_blank"> <img src="https://www.pngitem.com/pimgs/m/80-800968_vscode-visual-studio-logo-png-transparent-png.png" alt="vs-code" height="50"/> </a> 
+<a href="#" target="_blank"> <img src="https://github.com/xkendx/xkendx/blob/main/eclipse.png" alt="eclipse" height="40"/> </a> 
+<a href="#" target="_blank"> <img src="https://cdn.icon-icons.com/icons2/1381/PNG/512/sublimetext_94866.png" alt="sublime-text" height="45"/> </a> 
+<a href="#" target="_blank"> <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="git" height="50"/> </a> 
+<a href="#" target="_blank"> <img src="https://www.vectorlogo.zone/logos/gnu_bash/gnu_bash-icon.svg" alt="bash" height="50"/> </a> 
+<a href="#" target="_blank"> <img src="https://www.flaticon.com/svg/static/icons/svg/919/919847.svg" alt="gitHub" height="50"/> </a> 
+<a href="#" target="_blank"> <img src="https://img.shields.io/badge/jira-1e90ff.svg?&style=for-the-badge&logo=jira&logoColor=white" height="35"/> </a> 
+<a href="#" target="_blank"> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Slack_Technologies_Logo.svg/1280px-Slack_Technologies_Logo.svg.png" height="30"/> </a> 
+</p>
+<p align="left">
+<img src="https://github-readme-stats.vercel.app/api?username=lutfullahcelenk&theme=chartreuse-dark" alt="my github stats" width="49%"/>&nbsp;
+<img src="https://github-readme-streak-stats.herokuapp.com/?user=lutfullahcelenk&theme=chartreuse-dark" alt="my commit status" width="49%" /> </p>
+<p align="center"> <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=lutfullahcelenk&theme=chartreuse-dark&layout=compact" alt="languages" width="50%" > </p>
