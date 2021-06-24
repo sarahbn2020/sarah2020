@@ -1,6 +1,6 @@
-## Hi there. I'm Lutfullah...👋
-- 🔭 I'm currently working on frontend and mobile app development (JavaScript | React | React Native)
-- 🌱 I'm currently learning backend development (Node.js | MongoDB | Django)
+## Hi there. I'm Sarah...👋
+- 🔭 I'm currently working on AWS and DevOps
+- 🌱 I'm currently learning AWS 
 - 💬 Ask me about anything that you want to learn 
 ## 👨👩 Social
 [![Linkedin: VPA](https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/l%C3%BCtfullah-%C3%A7elenk-aa0927206/)
